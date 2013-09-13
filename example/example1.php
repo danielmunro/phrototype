@@ -2,8 +2,6 @@
 
 require_once(__DIR__.'/../src/Phrototype/Phrototype.php');
 
-class Engine extends Phrototype\Phrototype {}
-
 $engine = Phrototype\Phrototype::init([
     'on' => false,
     'start' => function() {
@@ -61,4 +59,5 @@ var_dump($sedan->engine->isOn());
 $sedan->turnOff();
 var_dump($sedan->engine->isOn());
 
+// throws a BadMethodCallException
 $sedan->foo();
