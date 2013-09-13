@@ -17,6 +17,18 @@ class Phrototype {
         $this->properties = $properties;
     }
 
+    public function hasOwnProperty($property) {
+        return isset($this->properties[$property]);
+    }
+
+    public function properties() {
+        $properties = $this->properties;
+        if($this->phrototype) {
+            $properties = array_merge($properties, $this->phrototype->properties());
+        }
+        return $properties;
+    }
+
     public function phrototype() {
         if($this->phrototype) {
             return $this->phrototype->phrototype();

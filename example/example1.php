@@ -59,5 +59,12 @@ var_dump($sedan->engine->isOn());
 $sedan->turnOff();
 var_dump($sedan->engine->isOn());
 
+echo "has properties: ";
+var_dump($sedan->hasOwnProperty('engine'));
+var_dump($sedan->hasOwnProperty('surroundSound'));
+echo "\nall properties: ";
+var_dump($sedan->properties());
+
 // throws a BadMethodCallException
+echo "\nmethod does not exist exception: ";
 $sedan->foo();
