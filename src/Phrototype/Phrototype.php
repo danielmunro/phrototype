@@ -64,6 +64,18 @@ class Phrototype {
         }
     }
 
+    public function __isset($property) {
+        return isset($this->properties()[$property]);
+    }
+
+    public function __unset($property) {
+        if(isset($this->properties[$property])) {
+            unset($this->properties[$property]);
+        } else if($this->phrototype) {
+            unset($this->phrototype->$property);
+        }
+    }
+
     public static function init($properties = []) {
         return new self(null, $properties);
     }

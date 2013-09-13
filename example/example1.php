@@ -72,5 +72,12 @@ var_dump($sedan->hasOwnProperty('surroundSound')); // true
 echo "\nall properties: ";
 var_dump($sedan->properties());
 
+echo "\nisset/unset:";
+var_dump(isset($sedan->foobar));
+var_dump(isset($sedan->surroundSound));
+var_dump(isset($sedan->engine));
+unset($sedan->wheelCount);
+var_dump(isset($sedan->wheelCount));
+
 echo "\nmethod does not exist exception: ";
 $sedan->foo(); // throws a BadMethodCallException
