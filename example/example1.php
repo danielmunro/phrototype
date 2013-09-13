@@ -21,8 +21,8 @@ $vehicle = Phrototype\Phrototype::init([
     'engine' => $engine,
     'wheelCount' => 4,
     'towingCapacity' => 0,
-    'turnOn' => function() use (&$vehicle) {
-        $vehicle->engine->start();
+    'turnOn' => function() {
+        $this->engine->start();
     }
 ]);
 
