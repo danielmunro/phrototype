@@ -2,6 +2,8 @@
 
 require_once(__DIR__.'/../src/Phrototype/Phrototype.php');
 
+
+// Passing all properties and methods in the init() call
 $engine = Phrototype\Phrototype::init([
     'on' => false,
     'start' => function() {
@@ -23,10 +25,15 @@ $vehicle = Phrototype\Phrototype::init([
         $vehicle->engine->start();
     }
 ]);
+
+
+// Dynamically assign a new function
 $vehicle->turnOff = function() {
     $this->engine->stop();
 };
 
+
+// Create a truck object from vehicle
 $truck = $vehicle([
     'tailHitch' => true
 ]);
@@ -47,24 +54,23 @@ $sedan = $car([
 
 echo "Sedan details:\n";
 echo "wheel count: ";
-var_dump($sedan->wheelCount);
+var_dump($sedan->wheelCount); // 4
 echo "\nairbag count: ";
-var_dump($sedan->airbagCount);
+var_dump($sedan->airbagCount); // 6
 echo "\nfoobar: ";
-var_dump($sedan->foobar);
+var_dump($sedan->foobar); // null -- property does not exist
 echo "\n";
 
 $sedan->turnOn();
-var_dump($sedan->engine->isOn());
+var_dump($sedan->engine->isOn()); // true
 $sedan->turnOff();
-var_dump($sedan->engine->isOn());
+var_dump($sedan->engine->isOn()); // false
 
 echo "has properties: ";
-var_dump($sedan->hasOwnProperty('engine'));
-var_dump($sedan->hasOwnProperty('surroundSound'));
+var_dump($sedan->hasOwnProperty('engine')); // false
+var_dump($sedan->hasOwnProperty('surroundSound')); // true
 echo "\nall properties: ";
 var_dump($sedan->properties());
 
-// throws a BadMethodCallException
 echo "\nmethod does not exist exception: ";
-$sedan->foo();
+$sedan->foo(); // throws a BadMethodCallException

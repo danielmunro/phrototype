@@ -1,4 +1,4 @@
 phrototype
 ==========
 
-Prototypal inheritance in PHP
+Prototypal inheritance in PHP. See example for syntax.
