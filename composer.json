@@ -1,0 +1,11 @@
+{
+    "name": "danielmunro/phrototype",
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "psr-0": {
+            "Phrototype": "src"
+        }
+    }
+}
