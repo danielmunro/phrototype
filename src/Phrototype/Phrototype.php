@@ -8,13 +8,20 @@ class Phrototype {
     private $phrototype = null;
 
     protected function __construct(self $phrototype = null, $properties = []) {
-        foreach($properties as &$property) {
-            if($property instanceof \Closure) {
-                $property = $property->bindTo($this, $this);
-            }
-        }
         $this->phrototype = $phrototype;
         $this->properties = $properties;
+        $this->setPropertyContext($this);
+    }
+
+    public function setPropertyContext($object) {
+        foreach($this->properties as &$property) {
+            if($property instanceof \Closure) {
+                $property = $property->bindTo($object, $object);
+            }
+        }
+        if($this->phrototype) {
+            $this->phrototype->setPropertyContext($object);
+        }
     }
 
     public function hasOwnProperty($property) {
@@ -54,14 +61,16 @@ class Phrototype {
         $this->properties[$attr] = $value;
     }
 
-    public function __get($attr) {
+    public function &__get($attr) {
         if(isset($this->properties[$attr])) {
             return $this->properties[$attr];
         } else {
             if($this->phrototype) {
-                return $this->phrototype->$attr;
+                return $this->phrototype->__get($attr);
             }
         }
+        $null = null;
+        return $null;
     }
 
     public function __isset($property) {
